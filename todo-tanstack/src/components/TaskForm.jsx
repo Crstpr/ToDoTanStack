@@ -7,7 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 const addTodo = async (data) => {
   const response = await fetch("http://localhost:5000/todo", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", token: localStorage.token },
     body: JSON.stringify({ description: data.taskDesc, title: data.taskTitle, dueDate: data.taskdueDate, isDone: false }),
   });
   return response.json();
@@ -31,16 +31,12 @@ const TaskForm = () => {
   });
 
   const onSubmit = (data) => {
-    console.log(data, "checker")
     mutation.mutate(data);
   }
 
-  const onCheck = (data) => {
-    console.log(form.getValues(), "checker")
-  }
   return (
     <div>
-      <h1>Todo Form</h1>
+      <h3 className='mt-5'>Todo Form</h3>
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <div>
 
@@ -58,8 +54,7 @@ const TaskForm = () => {
           <p style={{ color: 'red' }}>{errors.taskdueDate?.message}</p>
         </div>
 
-        <button onClick={onCheck}>Check</button>
-        <button type="submit" disabled={mutation.isLoading}>{mutation.isLoading ? "Submitting..." : "Submit"}</button>
+        <button type="submit" disabled={mutation.isLoading} className='btn btn-success'>{mutation.isLoading ? "Submitting..." : "Submit"}</button>
       </form>
     </div>
   );

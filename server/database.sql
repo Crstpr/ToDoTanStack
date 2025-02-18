@@ -1,6 +1,18 @@
 CREATE DATABASE tanstack;
 
-CREATE TABLE todot(
-    id SERIAL PRIMARY KEY,
-    description VARCHAR(255)
+CREATE TABLE todo_lists (
+    id VARCHAR(21) PRIMARY KEY,
+    user_id VARCHAR(21) REFERENCES users(id) ON DELETE CASCADE,
+    title VARCHAR(100) NOT NULL,
+    description TEXT,
+    due_date TIMESTAMPTZ,
+    created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+    is_done BOOLEAN DEFAULT FALSE,
+    CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE users (
+    id VARCHAR(21) PRIMARY KEY, 
+    username VARCHAR(50) NOT NULL UNIQUE, 
+    password VARCHAR(255) NOT NULL
 );
