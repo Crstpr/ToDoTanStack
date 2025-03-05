@@ -6,7 +6,6 @@ interface LoginProps {
 }
 
 const Login: React.FC<LoginProps> = ({ setAuth }) => {
-  // Define type for the inputs state
   interface InputState {
     username: string;
     password: string;
@@ -50,31 +49,39 @@ const Login: React.FC<LoginProps> = ({ setAuth }) => {
   };
 
   return (
-    <div className="container mt-5 bg-dark p-5 text-white mr-auto ml-auto rounded-3">
-      <h1 className="text-center text-6xl">Login</h1>
-      <form onSubmit={onSubmitForm}>
-        <input
-          type="text"
-          name="username"
-          placeholder="Username"
-          className="form-control my-3"
-          value={username}
-          onChange={onChange}
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          className="form-control my-3"
-          value={password}
-          onChange={onChange}
-          required
-        />
-        <button className="btn btn-success w-100">Login</button>
-      </form>
-      <div className="text-center mt-3">
-        <Link to="/register">Don't have an account yet? Register here</Link>
+    <div className="flex items-center justify-center h-screen bg-blue-950">
+      <div className="bg-[#9AA6B2] p-10 rounded-xl w-full max-w-md">
+        <h1 className="text-center text-3xl text-[#F8FAFC] font-mono mb-6">Login</h1>
+        <form onSubmit={onSubmitForm} className="flex flex-col space-y-4">
+          <input
+            type="text"
+            name="username"
+            placeholder="Username"
+            value={username}
+            onChange={onChange}
+            required
+            className="bg-[#F8FAFC] border border-gray-300 text-blue-950 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-[#D9EAFD] focus:border-transparent"
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={password}
+            onChange={onChange}
+            required
+            className="bg-[#F8FAFC] border border-gray-300 text-blue-950 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-[#D9EAFD] focus:border-transparent"
+          />
+          <button
+            className="bg-[#BCCCDC] hover:bg-[#9AA6B2] text-blue-950 font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline"
+          >
+            Login
+          </button>
+        </form>
+        <p className="mt-4 text-center text-sm text-[#D9EAFD]">
+          <Link to="/register" className="hover:text-[#F8FAFC]">
+            Don't have an account? Register here
+          </Link>
+        </p>
       </div>
     </div>
   );

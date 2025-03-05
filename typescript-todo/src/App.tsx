@@ -25,6 +25,15 @@ function App() {
         setAuth(false);
         return;
       }
+      const payload = JSON.parse(atob(token.split(".")[1]));
+      const isExpired = payload.exp * 1000 < Date.now();
+  
+      if (isExpired) {
+        console.warn("Token expired, logging out...");
+        localStorage.removeItem("token");
+        setAuth(false);
+        return;
+      }
 
       const response = await fetch("http://localhost:5001/auth/is-verify", {
         method: "GET",

@@ -58,21 +58,21 @@ const TaskForm: React.FC = () => {
   };
 
   return (
-    <div>
-      <h3 className='mt-5'>Todo Form</h3>
-      <form onSubmit={handleSubmit(onSubmit)} noValidate>
-        <div>
+    <div className="bg-[#9AA6B2] p-6 pl-6 pr-6 rounded-xl w-1/2 flex flex-col items-center justify-center">
+      <h3 className=' text-center mb-2 text-2xl font-bold'>Todo Form</h3>
+      <form onSubmit={handleSubmit(onSubmit)} noValidate className='flex flex-col'>
+        <div className='border-1 rounded-md'>
           <input
             type='text'
             id="taskTitle"
             {...register("taskTitle")}
             style={{ width: '350px', height: '25px' }}
-            placeholder='Task Title'
+            placeholder=' Task Title'
           />
           <p style={{ color: 'red' }}>{errors.taskTitle?.message}</p>
         </div>
 
-        <div>
+        <div className='border-1 rounded-md mt-2'>
           <input
             type='text'
             id="taskDesc"
@@ -83,7 +83,7 @@ const TaskForm: React.FC = () => {
           <p />
         </div>
 
-        <div>
+        <div className='border-1 rounded-md mt-2'>
           <input
             type='date'
             id="taskdueDate"
@@ -96,7 +96,7 @@ const TaskForm: React.FC = () => {
         <button
           type="submit"
           disabled={mutation.isPending}
-          className='btn btn-success'
+          className='bg-[#BCCCDC] hover:bg-blue-950 text-white mt-3.5 rounded-md p-1'
         >
           {mutation.isPending ? "Submitting..." : "Submit"}
         </button>
